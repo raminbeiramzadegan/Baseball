@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4 ">
+
+        <h2 class="mb-4">Hitter Reports</h2>
+        <a href="{% url 'reports:hitting_report' %}" class="btn btn-primary">Create New Report</a>
+        </div>
+        <table class="table table-hover table-striped data-table">
+          <thead>
+            <tr >
+              <th>Date</th>
+              <th>Team</th>
+              <th>Pos</th>
+              <th>Player</th>
+              <th>Hit</th>
+              <th>Pow</th>
+              <th>Run</th>
+              <th>Field</th>
+              <th>Thr</th>
+              <th>OVR</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for hit in hitreports %}
+            <tr>
+                <th>{{hit.report_date}}</th>
+                <th>{% for info_name,info_logo in team_info.items %}
+                    
+                    {% if info_name in hit.team %}
+                        <img height="20" width="20" src="{{info_logo}}" alt="">
+                        {% else %}
+                     {% endif %}
+               
+            {% endfor %} 
+                {{hit.team}}</th>
+                <th>{{hit.pos}}</th>
+                <th>{{hit.player_name}}</th>
+                <th>{{hit.hit}}</th>
+                <th>{{hit.power}}</th>
+                <th>{{hit.run}}</th>
+                <th>{{hit.fielding}}</th>
+                <th>{{hit.throwing}}</th>
+                <th>{{hit.overall_grade}}</th>
+                <th class="actions-column">
+                    <a href="{% url 'reports:edit_report' hit.id %}" class="edit-link">Edit</a>
+                    <a href="{% url 'reports:delete_report' hit.id %}" class="delete-link">Delete</a>
+                </th>
+            </tr>
+            {% endfor %}
+   
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2 class="mb-4">Pitcher Reports</h2>
+        <a href="{% url 'reports:pitching_report' %}" class="btn btn-primary">Create New Report</a>
+
+        </div>
+        <table class="table table-hover table-striped data-table">
+          <thead >
+            <tr>
+                <th>Date</th>
+                <th>Team</th>
+                <th>Pos</th>
+                <th>Player</th>
+                <th>Pitch1</th>
+                <th>Pitch High Velo</th>
+                <th>OVR</th>
+                <th>Actions</th>
+
+
+            </tr>
+          </thead>
+          <tbody>
+            {% for pitch in pitchreports %}
+            <tr>
+                <th>{{pitch.report_date}}</th>
+                <th>{% for info_name,info_logo in team_info.items %}
+                    
+                    {% if info_name in pitch.team %}
+                        <img height="20" width="20" src="{{info_logo}}" alt="">
+                        {% else %}
+                     {% endif %}
+               
+            {% endfor %}
+            {{pitch.team}}</th>
+                <th>{{pitch.pos}}</th>
+                <th>{{pitch.player_name}}</th>
+                <th>{{pitch.pitch1}}</th>
+                <th>{{pitch.pitch1_velo_high}}</th>
+                <th>{{pitch.overall_grade}}</th>
+                <th class="actions-column">
+                    <a href="{% url 'reports:edit_preport' pitch.id %}" class="edit-link">Edit</a>
+                    <a href="{% url 'reports:delete_preport' pitch.id %}" class="delete-link">Delete</a>
+                </th>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="container">
+        <h2 class="mt-4">MLB News</h2>
+        <div class="row">
+            {% for news in news_list %}
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                  
+                    <a href="https://www.mlb.com/news/{{news.link}}"><img src="{{ news.image }}" class="card-img-top" alt="News Image"></a>
+                    <div class="card-body">
+                        <a href="https://www.mlb.com/news/{{news.link}}"><h5 class="card-title"><b>{{ news.headline }}</b></h5></a>
+                        <p class="card-text">{{ news.body|truncatechars:"50" }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">{{ news.date }}</small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+   
+    
+{% endblock content %}
+
+
+

@@ -1,0 +1,350 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h4 class="mt-3 mb-4">Create Hitting Report</h4>
+    <a href="{% url 'home:homeview' %}" class="btn btn-primary">Back To Reports</a>
+    </div>
+</div>
+<form method="POST" novalidate>
+    {% csrf_token %}
+    <div class="container my-box">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="{{ form.player_name.id_for_label }} ">Player:</label>
+                    {{ form.player_name }}
+                    {% if form.player_name.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.player_name.errors %}
+                            <li class="text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="{{ form.Declarative_Statement.id_for_label }}">Declarative Statement:</label>
+                    {{ form.Declarative_Statement }}
+                    {% if form.Declarative_Statement.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.Declarative_Statement.errors %}
+                            <li class="text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label for="form.team.id_for_label">Team:</label>
+                    {{ form.team }}
+                    {% if form.team.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.team.errors %}
+                            <li class="text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label for="form.pos.id_for_label">Pos:</label>
+                    {{ form.pos }}
+                    {% if form.pos.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.pos.errors %}
+                            <li class="text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label for="form.bats.id_for_label">Bats:</label>
+                    {{ form.bats }}
+                    {% if form.bats.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.bats.errors %}
+                            <li class="text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label for="form.throws.id_for_label">Throws:</label>
+                    {{ form.throws }}
+                    {% if form.throws.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.throws.errors %}
+                            <li class="text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="form.report_date.id_for_label">Report Date:</label>
+                    {{ form.report_date }}
+                    {% if form.report_date.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.report_date.errors %}
+                            <li class="text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+
+<hr>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="{{ form.hit.id_for_label }}">Hit:</label>
+                    {{ form.hit }}
+                    {% if form.hit.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.hit.errors %}
+                            <li class="text-danger">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="{{ form.fvforhit.id_for_label }}">FV:</label>
+              {{form.fvforhit}}
+              {% if form.fvforhit.errors %}
+              <ul class="errorlist">
+                  {% for error in form.fvforhit.errors %}
+                      <li class="text-danger">{{ error }}</li>
+                  {% endfor %}
+              </ul>
+          {% endif %}
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="{{ form.commentforhit.id_for_label }}">Comment:</label>
+                    {{form.commentforhit}}
+                    {% if form.commentforhit.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.commentforhit.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        
+            <div class="form-group col-md-2">
+                <label for="form.power.id_for_label">Power:</label>
+    {{form.power}}
+    {% if form.power.errors %}
+    <ul class="errorlist">
+        {% for error in form.power.errors %}
+            <li class="text-danger">{{ error }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+            </div>
+        <div class="form-group col-md-2">
+            <label for="form.fvforpower.id_for_label">FV:</label>
+      {{form.fvforpower}}
+      {% if form.fvforpower.errors %}
+      <ul class="errorlist">
+          {% for error in form.fvforpower.errors %}
+              <li>{{ error }}</li>
+          {% endfor %}
+      </ul>
+  {% endif %}
+            
+        </div>
+    
+        <div class="form-group col-md-8">
+            <label for="form.commentforpower.id_for_label">Comment:</label>
+            {{form.commentforpower}}
+            {% if form.report_date.errors %}
+            <ul class="errorlist">
+                {% for error in form.report_date.errors %}
+                    <li class="text-danger">{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        </div>
+        </div>
+        <div class="row">
+    
+        <div class="form-group col-md-2">
+            <label for="form.fielding.id_for_label">Fielding:</label>
+    {{form.fielding}}
+    {% if form.report_date.errors %}
+    <ul class="errorlist">
+        {% for error in form.report_date.errors %}
+            <li class="text-danger">{{ error }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+        </div>
+            <div class="form-group col-md-2">
+                <label for="form.fvforfielding.id_for_label">FV:</label>
+                {{form.fvforfielding}}
+                {% if form.fvforfielding.errors %}
+                <ul class="errorlist">
+                    {% for error in form.fvforfielding.errors %}
+                        <li class="text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            </div>
+        
+            <div class="form-group col-md-8">
+                <label for="form.commentforfielding.id_for_label">Comment:</label>
+                {{form.commentforfielding}}
+                {% if form.commentforfielding.errors %}
+                <ul class="errorlist">
+                    {% for error in form.commentforfielding.errors %}
+                        <li class="text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            </div>
+        </div>
+            <div class="row">
+    
+    
+        <div class="form-group col-md-2">
+            <label for="form.throwing.id_for_label">Throwing:</label>
+    {{form.throwing}}
+    {% if form.throwing.errors %}
+    <ul class="errorlist">
+        {% for error in form.throwing.errors %}
+            <li class="text-danger">{{ error }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+        </div>
+            <div class="form-group col-md-2">
+                <label for="form.fvforthrowing.id_for_label">FV:</label>
+         {{form.fvforthrowing}}
+         {% if form.fvforthrowing.errors %}
+         <ul class="errorlist">
+             {% for error in form.fvforthrowing.errors %}
+                 <li>{{ error }}</li>
+             {% endfor %}
+         </ul>
+     {% endif %}
+            </div>
+        
+            <div class="form-group col-md-8">
+                <label for="form.commentforthrowing.id_for_label">Comment:</label>
+{{form.commentforthrowing}}
+{% if form.commentforthrowing.errors %}
+<ul class="errorlist">
+    {% for error in form.commentforthrowing.errors %}
+        <li class="text-danger">{{ error }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+            </div>
+            </div>
+            <div class="row">
+    
+        <div class="form-group col-md-2">
+            <label for="form.run.id_for_label">Run:</label>
+    {{form.run}}
+    {% if form.run.errors %}
+    <ul class="errorlist">
+        {% for error in form.run.errors %}
+            <li class="text-danger">{{ error }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+        </div>
+            <div class="form-grou col-md-2">
+                <label for="form.fvforrun.id_for_label">FV:</label>
+                {{form.fvforrun}}
+                {% if form.fvforrun.errors %}
+                <ul class="errorlist">
+                    {% for error in form.fvforrun.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            </div>
+        
+            <div class="form-group col-md-8">
+                <label for="form.commentforrun.id_for_label">Comment:</label>
+{{form.commentforrun}}    
+{% if form.commentforrun.errors %}
+<ul class="errorlist">
+    {% for error in form.commentforrun.errors %}
+        <li class="text-danger">{{ error }}</li>
+    {% endfor %}
+</ul>
+{% endif %}        
+</div>
+            </div>
+            <hr>
+            <div class="row">
+    
+    
+                <div class="form-group col-md-2">
+                    <label for="form.overall_grade.id_for_label">Overall Grade:</label>
+            {{form.overall_grade}}
+            {% if form.overall_grade.errors %}
+            <ul class="errorlist">
+                {% for error in form.overall_grade.errors %}
+                    <li class="text-danger">{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+                </div>
+                    <div class="form-group col-md-2">
+                        <label for="form.future_grade.id_for_label">Future Grade:</label>
+                 {{form.future_grade}}
+                 {% if form.future_grade.errors %}
+                 <ul class="errorlist">
+                     {% for error in form.future_grade.errors %}
+                         <li class="text-danger">{{ error }}</li>
+                     {% endfor %}
+                 </ul>
+             {% endif %}
+                    </div>
+                
+                    <div class="form-group col-md-8">
+ 
+                    </div>
+                    </div>  
+<hr>
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock content %}
+
+
+
+
